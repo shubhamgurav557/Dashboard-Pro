@@ -36,17 +36,14 @@ export const getCustomers = async (req, res) => {
 export const getTransactions = async (req, res) => {
     try {
         const { page = 1, limit = 20, sort = null, search = "" } = req.query;
-
         const generateSort = () => {
             const sortParsed = JSON.parse(sort);
             const sortFormatted = {
-                [sortParsed.field]: sortParsed.sort = 'asc' ? 1 : -1
-            };
+                [sortParsed.field]: sortParsed.sort === 'asc' ? 1 : -1
+            };            
             return sortFormatted;
         }
-
         const sortFormatted = Boolean(sort) ? generateSort() : {};
-
         const transactions = await Transactions.find({
             $or: [
                 { cost: { $regex: new RegExp(search, "i") } },
@@ -58,8 +55,11 @@ export const getTransactions = async (req, res) => {
             .limit(limit);
 
         const total = await Transactions.countDocuments({
-            name: { $regex: search, $options: "i" }
-        })
+            $or: [
+                { cost: { $regex: new RegExp(search, "i") } },
+                { userId: { $regex: new RegExp(search, "i") } }
+            ]
+        });
 
         res.status(200).json({
             transactions,
