@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
-    baseQuery: fetchBaseQuery({baseUrl: process.env.REACT_APP_BASE_URL}),
+    baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_BASE_URL }),
     reducerPath: "adminApi",
-    tagTypes: ["User", "Products", "Customers", "Transactions", "Login", "Register"],
+    tagTypes: ["User", "Products", "Customers", "Transactions", "Login", "Register", "Geography", "Sales"],
     endpoints: (build) => ({
         getUser: build.query({
             query: (id) => `general/user/${id}`,
@@ -14,19 +14,19 @@ export const api = createApi({
             providesTags: ["Products"]
         }),
         getCustomers: build.query({
-           query: () => `client/customers`,
-           providesTags: ["Customers"] 
+            query: () => `client/customers`,
+            providesTags: ["Customers"]
         }),
         getTransactions: build.query({
-            query: ({page, limit, sort, search}) => ({
+            query: ({ page, limit, sort, search }) => ({
                 url: "client/transactions",
                 method: "GET",
-                params: {page, limit, sort, search}
+                params: { page, limit, sort, search }
             }),
             providesTags: ["Transactions"]
         }),
         validateLogin: build.query({
-            query: ({email, password}) => ({
+            query: ({ email, password }) => ({
                 url: "/login",
                 method: "POST",
                 headers: {
@@ -40,7 +40,7 @@ export const api = createApi({
             providesTags: ["Login"]
         }),
         createUser: build.query({
-           query: ({name, email, password, occupation, phoneNumber, country, state, city}) => ({
+            query: ({ name, email, password, occupation, phoneNumber, country, state, city }) => ({
                 url: "/register",
                 method: "POST",
                 headers: {
@@ -48,18 +48,26 @@ export const api = createApi({
                 },
                 body: JSON.stringify({
                     name,
-                    email, 
-                    password, 
-                    occupation, 
-                    phoneNumber, 
-                    country, 
-                    state, 
+                    email,
+                    password,
+                    occupation,
+                    phoneNumber,
+                    country,
+                    state,
                     city
                 })
-           }),
-           providesTags: ["Register"] 
+            }),
+            providesTags: ["Register"]
+        }),
+        getGeography: build.query({
+            query: () => `client/geography`,
+            providesTags: ["Geography"]
+        }),
+        getSales: build.query({
+            query: () => `sales/sales`,
+            providesTags: ["Sales"]
         })
     })
 })
 
-export const { useGetUserQuery, useGetProductsQuery, useGetCustomersQuery, useGetTransactionsQuery, useValidateLoginQuery, useCreateUserQuery } = api;
+export const { useGetUserQuery, useGetProductsQuery, useGetCustomersQuery, useGetTransactionsQuery, useValidateLoginQuery, useCreateUserQuery, useGetGeographyQuery, useGetSalesQuery } = api;
