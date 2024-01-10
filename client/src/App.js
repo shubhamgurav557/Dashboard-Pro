@@ -12,6 +12,8 @@ import Transactions from "scenes/transactions/Transactions";
 import Landing from "scenes/landing/Landing";
 import Login from "scenes/login/Login";
 import Register from "scenes/register/Register";
+import Geography from "scenes/geography/Geography";
+import Overview from "scenes/overview/Overview";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
@@ -31,6 +33,8 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/customers" element={<Customers />} />
               <Route path="/transactions" element={<Transactions />} />
+              <Route path='/geography' element={<Geography />} />
+              <Route path="/overview" element={<Overview />} />
             </Route>
           </Routes>
         </ThemeProvider>
