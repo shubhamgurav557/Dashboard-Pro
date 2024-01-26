@@ -1,6 +1,9 @@
 import User from "../models/User.js";
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
+import OverallStat from '../models/OverallStat.js';
+import Transaction from '../models/Transactions.js'
+
 
 export const getUser = async (req, res) => {
     try {
@@ -47,3 +50,43 @@ export const createUser = async (req, res) => {
         return res.status(500).json({ message: error.message });
     }
 }
+
+
+export const getDashboardStats = async (req, res) => {
+    try {
+        const currentMonth = "November";
+        const currentYear= 2021;
+        const currentDay = "2021-11-15";
+
+        const transactions = await Transaction.find().limit(50).sort({createdOn: -1}) //Showing latest 50 transactions
+        const overallstats = await OverallStat.find({year: currentYear});
+        const {
+            totalCustomers,
+            yearlyTotalSoldUnits,
+            yearlySalesTotal,
+            monthlyData,
+            salesByCategory
+        } = overallstats[0]
+
+        const thisMonthStats = overallstats[0].monthlyData.find(({month}) => {
+            return month === currentMonth;
+        });
+
+        const todayStats = overallstats[0].dailyData.find(({date}) => {
+            return date === currentDay;
+        });
+
+        res.status(200).json({
+            totalCustomers,
+            yearlyTotalSoldUnits,
+            yearlySalesTotal,
+            monthlyData,
+            salesByCategory,
+            thisMonthStats,
+            todayStats,
+            transactions
+        })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+} 
