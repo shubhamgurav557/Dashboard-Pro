@@ -10,13 +10,14 @@ const Geography = () => {
   const { data } = useGetGeographyQuery();
 
   return (
-    <Box m="1.5rem 2.5rem">
+    <Box m="1.5rem 2rem">
       <Header title="GEOGRAPHY" subtitle="Find where your users are located." />
       <Box
         mt="40px"
         height="75vh"
         border={`1px solid ${theme.palette.secondary[200]}`}
         borderRadius="4px"
+        backgroundColor={theme.palette.background.alt}
       >
         {data ? (
           <ResponsiveChoropleth

@@ -7,3 +7,19 @@ body,
     width: 100%;
     font-family: 'Inter', sans-serif;
 }
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #34495e;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #283747;
+}
+
+::-webkit-scrollbar-track:hover{
+    background-color: #283747;
+}

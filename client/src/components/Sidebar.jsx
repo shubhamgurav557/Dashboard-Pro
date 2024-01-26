@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material'
-import { SettingsOutlined, ChevronLeft, ChevronRightOutlined, HomeOutlined, ShoppingCartOutlined, Groups2Outlined, ReceiptLongOutlined, PublicOutlined, PointOfSaleOutlined, TodayOutlined, CalendarMonthOutlined, AdminPanelSettingsOutlined, TrendingUpOutlined, PieChartOutlined } from '@mui/icons-material'
+import { SettingsOutlined, ChevronLeft, ChevronRightOutlined, HomeOutlined, ShoppingCartOutlined, Groups2Outlined, ReceiptLongOutlined, PublicOutlined, PointOfSaleOutlined, TodayOutlined, CalendarMonthOutlined, AdminPanelSettingsOutlined } from '@mui/icons-material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import FlexBetween from './FlexBetween'
 import profileImg from '../assets/profileImg.jpg'
@@ -46,22 +46,22 @@ const navItems = [
         text: "Monthly",
         icon: <CalendarMonthOutlined />
     },
-    {
-        text: "Breakdown",
-        icon: <PieChartOutlined />
-    },
+    // {
+    //     text: "Breakdown",
+    //     icon: <PieChartOutlined />
+    // },
     {
         text: "Management",
         icon: null
     },
     {
-        text: "Admin",
+        text: "Admins",
         icon: <AdminPanelSettingsOutlined />
     },
-    {
-        text: "Performance",
-        icon: <TrendingUpOutlined />
-    },
+    // {
+    //     text: "Performance",
+    //     icon: <TrendingUpOutlined />
+    // },
 ]
 
 const Sidebar = ({
@@ -97,7 +97,7 @@ const Sidebar = ({
                         <Box m="1.25rem 0px 1rem 1rem">
                             <FlexBetween color={theme.palette.secondary.main}>
                                 <Box display="flex" alignItems="center" gap=".5rem">
-                                    <Typography variant='h4' fontWeight='bold'>
+                                    <Typography variant='h4' fontWeight='bold' color={theme.palette.secondary[100]}>
                                         ERP
                                     </Typography>
                                 </Box>
@@ -126,12 +126,13 @@ const Sidebar = ({
 
                                                 sx={{
                                                     backgroundColor: active === lcText ? theme.palette.secondary[300] : 'transparent',
-                                                    color: active === lcText ? theme.palette.primary[600] : theme.palette.secondary[100]
+                                                    color: active === lcText ? theme.palette.background.alt : theme.palette.secondary[600],
+                                                    fontWeight: active === lcText ? 700 : 100
                                                 }}
 
                                             >
                                                 <ListItemIcon sx={{
-                                                    color: active === lcText ? theme.palette.primary[600] : theme.palette.secondary[200]
+                                                    color: active === lcText ? theme.palette.background.alt : theme.palette.secondary[600]
                                                 }}>
                                                     {icon}
                                                 </ListItemIcon>
