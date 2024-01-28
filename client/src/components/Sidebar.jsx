@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from '@mui/material'
+import { Box, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme, Avatar } from '@mui/material'
 import { SettingsOutlined, ChevronLeft, ChevronRightOutlined, HomeOutlined, ShoppingCartOutlined, Groups2Outlined, ReceiptLongOutlined, PublicOutlined, PointOfSaleOutlined, TodayOutlined, CalendarMonthOutlined, AdminPanelSettingsOutlined } from '@mui/icons-material'
 import { useLocation, useNavigate } from 'react-router-dom'
 import FlexBetween from './FlexBetween'
 import profileImg from '../assets/profileImg.jpg'
+import logoIcon from '../assets/logo.png';
 
 const navItems = [
     {
@@ -96,10 +97,14 @@ const Sidebar = ({
                     <Box width="100%">
                         <Box m="1.25rem 0px 1rem 1rem">
                             <FlexBetween color={theme.palette.secondary.main}>
-                                <Box display="flex" alignItems="center" gap=".5rem">
+                                {/* <Box display="flex" alignItems="center" gap=".5rem">
                                     <Typography variant='h4' fontWeight='bold' color={theme.palette.secondary[100]}>
                                         ERP
                                     </Typography>
+                                </Box> */}
+                                <Box sx={{display: "flex", justifyContent: 'space-around', gap: ".5rem", alignItems: "center"}}>
+                                    <Avatar alt="" src={logoIcon} style={{ height: '30px', width: '30px' }} />
+                                    <Typography variant='h4' fontWeight='bold' color={theme.palette.secondary[100]}>Dashboard Pro</Typography>
                                 </Box>
                                 {!isNonMobile && (
                                     <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>

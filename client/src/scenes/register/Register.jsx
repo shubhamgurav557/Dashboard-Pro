@@ -1,4 +1,4 @@
-import { Container, CssBaseline, Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Link, Grid, Box, FormControl, InputLabel, Select, MenuItem, } from '@mui/material';
+import { Container, CssBaseline, Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Link, Grid, Box, FormControl, InputLabel, Select, MenuItem, useTheme, } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
@@ -7,6 +7,7 @@ import { getCountries, getStatesByShort, getCities } from 'countrycitystatejson'
 import { HowToRegOutlined, ArrowBack } from '@mui/icons-material';
 
 const Register = () => {
+  const theme = useTheme();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -108,7 +109,7 @@ const Register = () => {
           alignItems: 'center',
         }}
       >
-        <Link display="flex" alignItems="center" gap=".5rem" variant="body2" onClick={handleBackToLanding} sx={{ alignSelf: 'flex-start', cursor: "pointer" }}>
+        <Link display="flex" alignItems="center" gap=".5rem" variant="body2" onClick={handleBackToLanding} sx={{ alignSelf: 'flex-start', cursor: "pointer", color: theme.palette.secondary.main, opacity: '.5' }}>
             <ArrowBack sx={{ width: ".8em", height: ".8em" }} /> Back to Landing Page
           </Link>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -127,7 +128,15 @@ const Register = () => {
             autoComplete="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            sx={{ mb: '1em' }}
+            sx={
+              {
+                mb: '1em',
+                color: theme.palette.secondary.main,
+                "& .Mui-focused": {
+                  color: theme.palette.secondary.main, // Customize the focused color
+                },
+              }
+            }
           />
           <TextField
             required
@@ -138,7 +147,15 @@ const Register = () => {
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            sx={{ mb: '1em' }}
+            sx={
+              {
+                mb: '1em',
+                color: theme.palette.secondary.main,
+                "& .Mui-focused": {
+                  color: theme.palette.secondary.main, // Customize the focused color
+                },
+              }
+            }
           />
           <TextField
             required
@@ -149,7 +166,15 @@ const Register = () => {
             autoComplete="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            sx={{ mb: '1em' }}
+            sx={
+              {
+                mb: '1em',
+                color: theme.palette.secondary.main,
+                "& .Mui-focused": {
+                  color: theme.palette.secondary.main, // Customize the focused color
+                },
+              }
+            }
           />
           <TextField
             required
@@ -160,7 +185,15 @@ const Register = () => {
             autoComplete="phone"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            sx={{ mb: '1em' }}
+            sx={
+              {
+                mb: '1em',
+                color: theme.palette.secondary.main,
+                "& .Mui-focused": {
+                  color: theme.palette.secondary.main, // Customize the focused color
+                },
+              }
+            }
           />
           <TextField
             required
@@ -171,9 +204,26 @@ const Register = () => {
             autoComplete="occupation"
             value={occupation}
             onChange={(e) => setOccupation(e.target.value)}
-            sx={{ mb: '1em' }}
+            sx={
+              {
+                mb: '1em',
+                color: theme.palette.secondary.main,
+                "& .Mui-focused": {
+                  color: theme.palette.secondary.main, // Customize the focused color
+                },
+              }
+            }
           />
-          <FormControl sx={{ mb: '1em' }} fullWidth>
+          <FormControl 
+          sx={
+            {
+              mb: '1em',
+              color: theme.palette.secondary.main,
+              "& .Mui-focused": {
+                color: theme.palette.secondary.main, // Customize the focused color
+              },
+            }
+          } fullWidth>
             <InputLabel>Country</InputLabel>
             <Select value={selectedCountry} onChange={handleCountryChange} label="Country">
               <MenuItem value="">Select Country</MenuItem>
@@ -184,7 +234,15 @@ const Register = () => {
               ))}
             </Select>
           </FormControl>
-          <FormControl sx={{ mb: '1em' }} fullWidth disabled={!selectedCountry}>
+          <FormControl sx={
+              {
+                mb: '1em',
+                color: theme.palette.secondary.main,
+                "& .Mui-focused": {
+                  color: theme.palette.secondary.main, // Customize the focused color
+                },
+              }
+            } fullWidth disabled={!selectedCountry}>
             <InputLabel>State</InputLabel>
             <Select value={selectedState} onChange={handleStateChange} label="State">
               <MenuItem value="">Select State</MenuItem>
@@ -195,7 +253,15 @@ const Register = () => {
               ))}
             </Select>
           </FormControl>
-          <FormControl sx={{ mb: '1em' }} fullWidth disabled={!selectedState}>
+          <FormControl sx={
+              {
+                mb: '1em',
+                color: theme.palette.secondary.main,
+                "& .Mui-focused": {
+                  color: theme.palette.secondary.main, // Customize the focused color
+                },
+              }
+            } fullWidth disabled={!selectedState}>
             <InputLabel>City</InputLabel>
             <Select value={selectedCity} onChange={handleCityChange} label="City">
               <MenuItem value="">Select City</MenuItem>
@@ -212,7 +278,7 @@ const Register = () => {
           </Button>
           <Grid container>
               <Grid item>
-                <Link variant="body2" sx={{ cursor: "pointer" }} onClick={handleSignIn}>
+                <Link variant="body2" sx={{ cursor: "pointer", color: theme.palette.secondary.main, opacity: '.5' }} onClick={handleSignIn}>
                   Already Registered ?
                   <strong> Sign In</strong>
                 </Link>
