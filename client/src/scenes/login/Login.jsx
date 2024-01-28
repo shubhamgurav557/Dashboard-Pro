@@ -1,4 +1,4 @@
-import { Container, CssBaseline, Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Link, Grid, Box } from '@mui/material';
+import { Container, CssBaseline, Avatar, Typography, TextField, FormControlLabel, Checkbox, Button, Link, Grid, Box, useTheme } from '@mui/material';
 import { LockClockOutlined, ArrowBack } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { setCookie } from 'state/functions';
 
 const Login = () => {
+  const theme = useTheme();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -57,7 +58,7 @@ const Login = () => {
             alignItems: 'center',
           }}
         >
-          <Link display="flex" alignItems="center" gap=".5rem" variant="body2" onClick={handleBackToLanding} sx={{ alignSelf: 'flex-start', cursor: "pointer" }}>
+          <Link display="flex" alignItems="center" gap=".5rem" variant="body2" onClick={handleBackToLanding} sx={{ alignSelf: 'flex-start', cursor: "pointer", color: theme.palette.secondary.main, opacity: '.5' }}>
             <ArrowBack sx={{ width: ".8em", height: ".8em" }} /> Back to Landing Page
           </Link>
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -78,6 +79,14 @@ const Login = () => {
               autoFocus
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              sx={
+                {
+                  color: theme.palette.secondary.main,
+                  "& .Mui-focused": {
+                    color: theme.palette.secondary.main, // Customize the focused color
+                  },
+                }
+              }
             />
             <TextField
               margin="normal"
@@ -90,10 +99,14 @@ const Login = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              sx={
+                {
+                  color: theme.palette.secondary.main,
+                  "& .Mui-focused": {
+                    color: theme.palette.secondary.main, // Customize the focused color
+                  },
+                }
+              }
             />
             <Button
               type="submit"
@@ -105,12 +118,12 @@ const Login = () => {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" sx={{color: theme.palette.secondary.main, opacity: '.5'}}>
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link variant="body2" sx={{ cursor: "pointer" }} onClick={handleSignUp}>
+                <Link variant="body2" sx={{ cursor: "pointer", color: theme.palette.secondary.main, opacity: '.5' }} onClick={handleSignUp}>
                   Don't have an account?
                   <strong> Sign Up</strong>
                 </Link>

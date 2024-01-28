@@ -11,7 +11,10 @@ const theme = useTheme();
       <CssBaseline />
       <AppBar position="absolute" style={{ background: 'transparent', boxShadow: 'none' }}>
         <Toolbar>
-            <Avatar alt="" src={logoIcon} style={{ height: '40px', width: '40px', marginRight: '16px' }} />
+          <Box sx={{display: "flex", justifyContent: 'space-around', gap: ".5rem", alignItems: "center"}}>
+            <Avatar alt="" src={logoIcon} style={{ height: '30px', width: '30px' }} />
+            <Typography variant='h4' fontWeight='bold'>Dashboard Pro</Typography>
+          </Box>
           <div style={{ marginLeft: 'auto' }}>
             <Button component={Link} to="/login" color="inherit">
               Login
