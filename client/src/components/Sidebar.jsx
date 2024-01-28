@@ -91,7 +91,8 @@ const Sidebar = ({
                         backgroundColor: theme.palette.background.alt,
                         boxSizing: "border-box",
                         borderWidth: isNonMobile ? 0 : "2px",
-                        width: drawerWidth
+                        width: drawerWidth,
+                        transition: '.2s ease-in-out'
                     }
                 }}>
                     <Box width="100%">

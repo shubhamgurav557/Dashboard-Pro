@@ -18,6 +18,11 @@ export const getCookies = () => {
     return cookies;
 }
 
+export const getCookieByName = (name) => {
+    const cookies = getCookies();
+    return cookies[name];
+}
+
 export const decodeToken = (token) => {
     const decodeToken = jwtDecode(token);
     return decodeToken;

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { setCookie } from 'state/functions';
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
   const theme = useTheme();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -29,6 +29,7 @@ const Login = () => {
 
       if (userData.success) {
         setCookie('token', userData.token, 7);
+        onLoginSuccess(userData.token);
         navigate('/dashboard');
       } else {
         toast.error(`${userData.message}`, { position: toast.POSITION.TOP_RIGHT });
